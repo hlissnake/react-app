@@ -1,5 +1,6 @@
 'use strict';
 
+// initialize touch events in mobile
 React.initializeTouchEvents(true);
 
 var MaxDistance = 100,
@@ -11,6 +12,7 @@ var MaxDistance = 100,
             setTimeout(callback);
           };
 
+// Slide Item object, to wrap the children elements inside Slider
 var SlideItem = React.createClass({
 	render : function(){
 		return (
@@ -32,28 +34,47 @@ var SlideItem = React.createClass({
 var SlideView = React.createClass({
 
 	componentDidMount : function(){
+		// Get current dom reference
 	    this.domStyle = React.findDOMNode(this).style;
    		this.OverThreshold = false;
    		this.currentIndex = this.props.currentIndex;
 
+   		// initialize the slider position
 		this.domStyle.transform = 'translateX(-' + this.props.offsetX * this.props.currentIndex + 'px) translateZ(0)';
 		this.domStyle.transition = 'transform 300ms ease';
 	},
 
+	/**
+	 * avoid to rerender the component
+	 * @return {[type]} [description]
+	 */
 	shouldCOmponentUpdate : function(){
 		return false;
 	},
 
+	/**
+	 * switch to the next item
+	 * @return {Function} [description]
+	 */
     next : function(){
         this.currentIndex += 1;
         this.props.onnext && this.props.onnext();
     },
 
+	/**
+	 * switch to the previous item
+	 * @return {Function} [description]
+	 */
     prev : function(){
         this.currentIndex -= 1;
         this.props.onprev && this.props.onprev();
     },
 
+    /**
+     * touch start event handler, set the slider into current initial status
+     * @param  {[type]} e [description]
+     * @return {[type]}   [description]
+     */
 	onDragStart : function(e){
 		if (this.props.stopped) return;
 
@@ -68,6 +89,11 @@ var SlideView = React.createClass({
         this.domStyle.webkitTransform = 'translateX(-' + Math.abs(this.startDistance) + 'px) translateZ(0)';
 	},
 
+	/**
+	 * touch move event handler, move the slider
+	 * @param  {[type]} e [description]
+	 * @return {[type]}   [description]
+	 */
 	onDrag : function(e){
 		var touch = e.touches.length ? e.touches[0] : e.changedTouches[0],
 			offsetX = touch.pageX - this.prevPoint.x,
@@ -111,6 +137,10 @@ var SlideView = React.createClass({
 	    }
 	},
 
+	/**
+	 * touch end event handler, execute next or prev transition animation
+	 * @return {[type]} [description]
+	 */
 	onDragEnd : function(){
 		if (this.props.stopped) return false;
 
@@ -139,6 +169,10 @@ var SlideView = React.createClass({
         }
 	},
 
+	/**
+	 * render
+	 * @return {[type]} [description]
+	 */
 	render : function(){
 		var offsetX = this.props.offsetX;
 
