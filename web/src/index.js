@@ -49,7 +49,7 @@ IO({
 			currentIndex = 1,//currentTime.getDate() - 22,
 			canPlay = false;
 
-		React.addons.Perf.start();
+		// React.addons.Perf.start();
 
 		React.render(
 

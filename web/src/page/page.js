@@ -67,7 +67,7 @@ var Page = React.createClass({
 				data : me.props.data
 			});
 
-			React.addons.Perf.printExclusive();
+			// React.addons.Perf.printExclusive();
 		});
 	},
 	

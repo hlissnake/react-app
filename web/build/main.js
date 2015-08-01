@@ -105,7 +105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 				currentIndex = 1,//currentTime.getDate() - 22,
 				canPlay = false;
 
-			React.addons.Perf.start();
+			// React.addons.Perf.start();
 
 			React.render(
 
@@ -580,7 +580,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					data : me.props.data
 				});
 
-				React.addons.Perf.printExclusive();
+				// React.addons.Perf.printExclusive();
 			});
 		},
 		
@@ -617,6 +617,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 
+	// initialize touch events in mobile
 	React.initializeTouchEvents(true);
 
 	var MaxDistance = 100,
@@ -628,6 +629,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            setTimeout(callback);
 	          };
 
+	// Slide Item object, to wrap the children elements inside Slider
 	var SlideItem = React.createClass({displayName: "SlideItem",
 		render : function(){
 			return (
@@ -649,28 +651,47 @@ return /******/ (function(modules) { // webpackBootstrap
 	var SlideView = React.createClass({displayName: "SlideView",
 
 		componentDidMount : function(){
+			// Get current dom reference
 		    this.domStyle = React.findDOMNode(this).style;
 	   		this.OverThreshold = false;
 	   		this.currentIndex = this.props.currentIndex;
 
+	   		// initialize the slider position
 			this.domStyle.transform = 'translateX(-' + this.props.offsetX * this.props.currentIndex + 'px) translateZ(0)';
 			this.domStyle.transition = 'transform 300ms ease';
 		},
 
+		/**
+		 * avoid to rerender the component
+		 * @return {[type]} [description]
+		 */
 		shouldCOmponentUpdate : function(){
 			return false;
 		},
 
+		/**
+		 * switch to the next item
+		 * @return {Function} [description]
+		 */
 	    next : function(){
 	        this.currentIndex += 1;
 	        this.props.onnext && this.props.onnext();
 	    },
 
+		/**
+		 * switch to the previous item
+		 * @return {Function} [description]
+		 */
 	    prev : function(){
 	        this.currentIndex -= 1;
 	        this.props.onprev && this.props.onprev();
 	    },
 
+	    /**
+	     * touch start event handler, set the slider into current initial status
+	     * @param  {[type]} e [description]
+	     * @return {[type]}   [description]
+	     */
 		onDragStart : function(e){
 			if (this.props.stopped) return;
 
@@ -685,6 +706,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.domStyle.webkitTransform = 'translateX(-' + Math.abs(this.startDistance) + 'px) translateZ(0)';
 		},
 
+		/**
+		 * touch move event handler, move the slider
+		 * @param  {[type]} e [description]
+		 * @return {[type]}   [description]
+		 */
 		onDrag : function(e){
 			var touch = e.touches.length ? e.touches[0] : e.changedTouches[0],
 				offsetX = touch.pageX - this.prevPoint.x,
@@ -728,6 +754,10 @@ return /******/ (function(modules) { // webpackBootstrap
 		    }
 		},
 
+		/**
+		 * touch end event handler, execute next or prev transition animation
+		 * @return {[type]} [description]
+		 */
 		onDragEnd : function(){
 			if (this.props.stopped) return false;
 
@@ -756,6 +786,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 		},
 
+		/**
+		 * render
+		 * @return {[type]} [description]
+		 */
 		render : function(){
 			var offsetX = this.props.offsetX;
 
