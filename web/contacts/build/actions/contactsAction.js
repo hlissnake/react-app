@@ -11,6 +11,16 @@ var ContactsAction = {
 	    });
 	},
 
+	sort : function(option){
+		Dispatcher.dispatch({
+	    	source: 'VIEW_ACTION',
+	    	action: {
+		    	type : 'sort',
+		    	option : option
+	    	}
+	    });
+	},
+
 	search : function(name){
 		Dispatcher.dispatch({
 	    	source: 'VIEW_ACTION',

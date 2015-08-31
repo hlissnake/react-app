@@ -8,25 +8,6 @@ var FILTER_EVENT = 'search';
 
 var ContactsStore = assign({}, EventEmitter.prototype, {
 
-	// fetch : function(callback){
-	// 	if(window == undefined) {
-	// 		// Node.js load url resource
-	// 	} else {
-	// 		$.ajax({
-	// 			url: "http://jsonplaceholder.typicode.com/users",
-	// 			method: "POST",
-	// 			data: products
-	// 		}).then(
-	// 			function success(data) {
-	// 			  	callback(data);
-	// 			}.bind(this),
-	// 			function error(){
-	// 				console.log('error');
-	// 			}
-	// 		);
-	// 	}
-	// },
-
 	get : function(){
 		return this.contactsData;
 	},
@@ -58,7 +39,7 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 						url: "http://jsonplaceholder.typicode.com/users",
 						dataType: 'json',
 						success: function(data) {
-						  	ContactsStore.originalData = ContactsStore.contactsData = data;
+						  	ContactsStore.contactsData = ContactsStore.originalData = data;
 						  	ContactsStore.emitChange();
 						},
 						error: function(){
@@ -81,6 +62,23 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 				}
 
 				ContactsStore.contactsData = resultData;
+				ContactsStore.emitChange();
+
+				break;
+
+			case 'sort':
+
+				if(action.option == 'none') {
+					ContactsStore.contactsData = ContactsStore.originalData;
+				} else {
+					ContactsStore.contactsData.sort(function(a, b){
+						if(action.option === 'name') {
+							return a.name > b.name;
+						} else if(action.option === 'id') {
+							return a.id > b.id;
+						}
+					})
+				}
 				ContactsStore.emitChange();
 
 				break;
