@@ -4,12 +4,18 @@ var assign = require('object-assign');
 
 
 var CHANGE_EVENT = 'change';
-var FILTER_EVENT = 'search';
+
+var ContactsData = [];
+var OriginalData = [];
 
 var ContactsStore = assign({}, EventEmitter.prototype, {
 
 	get : function(){
-		return this.contactsData;
+		return ContactsData;
+	},
+
+	getOriginal : function(){
+		return OriginalData;
 	},
 
 	emitChange : function(){
@@ -17,7 +23,7 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 	},
 
 	onChange : function(callback){
-		this.contactsData = this.originalData = [];
+		ContactsData = OriginalData = [];
 		this.on(CHANGE_EVENT, callback)
 	},
 
@@ -39,10 +45,12 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 						url: "http://jsonplaceholder.typicode.com/users",
 						dataType: 'json',
 						success: function(data) {
-						  	ContactsStore.contactsData = ContactsStore.originalData = data;
+						  	ContactsData = OriginalData = data;
 						  	ContactsStore.emitChange();
 						},
 						error: function(){
+							// ContactsData = OriginalData = MOCK_DATA;
+						 //  	ContactsStore.emitChange();
 							alert('server error');
 						}
 					});
@@ -54,14 +62,14 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 				var resultData = [],
 					item;
 
-				for(var i = 0; i < ContactsStore.originalData.length; i++) {
-					item = ContactsStore.originalData[i];
+				for(var i = 0; i < OriginalData.length; i++) {
+					item = OriginalData[i];
 					if(item.name.indexOf(action.name) >= 0 ) {
 						resultData.push(item);
 					}
 				}
 
-				ContactsStore.contactsData = resultData;
+				ContactsData = resultData;
 				ContactsStore.emitChange();
 
 				break;
@@ -69,9 +77,9 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 			case 'sort':
 
 				if(action.option == 'none') {
-					ContactsStore.contactsData = ContactsStore.originalData;
+					ContactsData = OriginalData;
 				} else {
-					ContactsStore.contactsData.sort(function(a, b){
+					ContactsData.sort(function(a, b){
 						if(action.option === 'name') {
 							return a.name > b.name;
 						} else if(action.option === 'id') {

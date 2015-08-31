@@ -1,6 +1,7 @@
 var React = require('react');
 var Contacts = require('./jsx/contacts');
 var Sort = require('./jsx/sortSelect');
+var Loading = require('./jsx/loading');
 var BusinessCard = require('./jsx/businessCard');
 
 var ContactsAction = require('./actions/contactsAction');
@@ -42,7 +43,7 @@ var ContactList = React.createClass({
 
 						<Contacts contacts={this.state.contacts} loading={this.state.loading} onSelect={this._onSelectContact} />
 
-						{ this.state.loading ? <div className="loading-icon"></div> : [] }
+						<Loading load={this.state.loading}/>
 
 					</div>
 
@@ -75,19 +76,21 @@ var ContactList = React.createClass({
 			contacts : ContactsStore.get()
 		});
 
-		calcualteAlphabet(ContactsStore.get());
+		calcualteAlphabet(ContactsStore.getOriginal());
 	}
 })
 
 React.render(<ContactList />, document.getElementById('container'));
 
+
 // calculate for each letter of the contact list
 function calcualteAlphabet(contactsData){
 
-	var alphabetMap = {};
+	var result = [],
+		alphabetMap = {};
 
 	for(var i = 0; i < contactsData.length; i++) {
-		var firstLetter = contactsData[i].substring(0,1).toUpperCase();
+		var firstLetter = contactsData[i].name.substring(0,1).toUpperCase();
 
 		if(alphabetMap[firstLetter]) {
 			alphabetMap[firstLetter]++;
@@ -95,6 +98,14 @@ function calcualteAlphabet(contactsData){
 			alphabetMap[firstLetter] = 1;
 		}
 	}
+
+	for(var p in alphabetMap) {
+		if(alphabetMap.hasOwnProperty(p)) {
+			result.push( p + ' : ' + alphabetMap[p] + ', ');
+		}
+	}
+
+	document.getElementById('admin-selection').innerHTML = result.join('');
 
 }
 

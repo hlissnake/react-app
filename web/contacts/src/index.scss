@@ -76,6 +76,7 @@
 					line-height: 50px;
 					font-size: 16px;
 					overflow: hidden;
+					font-weight: 800;
 			    }
 	    	}
 
@@ -94,6 +95,14 @@
 			    -o-animation: circle 1s infinite linear;
 			    -webkit-animation: circle 1s infinite linear;
 			    animation: circle 1s infinite linear;
+
+			    &.show {
+			    	display: block;
+			    }
+
+			    &.hide {
+			    	display: none;
+			    }
     		}
 	    }
 	
