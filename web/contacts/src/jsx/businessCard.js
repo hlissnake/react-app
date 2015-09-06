@@ -2,6 +2,14 @@ var React = require('react');
 
 var BusinessCard = React.createClass({
 
+	// componentDidMount : function(){
+	// 	ContactsStore.on('contact-item-select', function(contactItem){
+	// 		this.setState({
+	// 			contact : contactItem
+	// 		})
+	// 	}.bind(this));
+	// },
+
 	shouldComponentUpdate : function(nextProps, nextState){
 		return this.props.contact != nextProps.contact;
 	},

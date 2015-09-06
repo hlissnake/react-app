@@ -1,4 +1,4 @@
-var React = require('react/dist/react-with-addons');
+var React = require('react');///dist/react-with-addons');
 
 var Contacts = require('./jsx/contacts');
 var Sort = require('./jsx/sortSelect');
@@ -21,7 +21,7 @@ var ContactList = React.createClass({
 	componentDidMount : function(){
 		ContactsStore.onChange(this._onChange);
 		ContactsAction.load();
-		React.addons.Perf.start();
+		// React.addons.Perf.start();
 
 		this.setState({
 			loading : true
@@ -60,33 +60,31 @@ var ContactList = React.createClass({
 
 	_selectSortOption : function(e){
 		ContactsAction.sort(e.target.value);
-		React.addons.Perf.printInclusive();
-		
-		React.addons.Perf.stop();
-		React.addons.Perf.start();
+		// React.addons.Perf.printInclusive();
+		// React.addons.Perf.stop();
+		// React.addons.Perf.start();
 	},
 
 	_searchContactName : function(e){
 		ContactsAction.search(e.target.value);
-		React.addons.Perf.printInclusive();
-		
-		React.addons.Perf.stop();
-		React.addons.Perf.start();
+		// React.addons.Perf.printInclusive();
+		// React.addons.Perf.stop();
+		// React.addons.Perf.start();
 	},
 
 	_onSelectContact : function(contact){
-
 		this.setState({
 			selectContact : contact
 		});
 		ContactsAction.select(contact.get('id'));
 
-		React.addons.Perf.printInclusive();
-		React.addons.Perf.printWasted();
-		React.addons.Perf.printDOM();
+		// ContactsStore.emit('contact-item-select', { contact : contact });
 
-		React.addons.Perf.stop();
-		React.addons.Perf.start();
+		// React.addons.Perf.printInclusive();
+		// React.addons.Perf.printWasted();
+		// React.addons.Perf.printDOM();
+		// React.addons.Perf.stop();
+		// React.addons.Perf.start();
 	},
 
 	_onChange : function(){

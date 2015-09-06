@@ -4,6 +4,9 @@ var ContactItem = React.createClass({
 
 	onClickHandler : function(){
 		this.props.onSelect(this.props.data);
+		// this.setState({
+		// 	select : !this.state.select
+		// })
 	},
 
 	shouldComponentUpdate : function(nextProps){
