@@ -3,7 +3,7 @@ var React = require('react');
 var BusinessCard = React.createClass({displayName: "BusinessCard",
 
 	shouldComponentUpdate : function(nextProps, nextState){
-		return this.props.contact.username != nextProps.contact.username;
+		return this.props.contact != nextProps.contact;
 	},
 
 	render : function(){
@@ -12,14 +12,14 @@ var BusinessCard = React.createClass({displayName: "BusinessCard",
 			return (
 				React.createElement("div", {className: "business-card"}, 
 					React.createElement("div", {className: "business-left"}, 
-						React.createElement("div", {className: "name"}, contact.name)
+						React.createElement("div", {className: "name"}, contact.get('name'))
 					), 
 					React.createElement("div", {className: "business-right"}, 
-						React.createElement("div", {className: "company"}, contact.company.name), 
-						React.createElement("div", {className: "phrase"}, contact.company.catchPhrase), 
-						React.createElement("div", {className: "phone"}, contact.phone), 
-						React.createElement("div", {className: "email"}, contact.email), 
-						React.createElement("div", {className: "website"}, contact.website)
+						React.createElement("div", {className: "company"}, contact.get('company').name), 
+						React.createElement("div", {className: "phrase"}, contact.get('company').catchPhrase), 
+						React.createElement("div", {className: "phone"}, contact.get('phone')), 
+						React.createElement("div", {className: "email"}, contact.get('email')), 
+						React.createElement("div", {className: "website"}, contact.get('website'))
 					)
 				)
 			)

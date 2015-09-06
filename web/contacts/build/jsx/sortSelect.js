@@ -2,6 +2,10 @@ var React = require('react');
 
 var SortSelect = React.createClass({displayName: "SortSelect",
 
+	shouldComponentUpdate : function(){
+		return false;
+	},
+
 	render : function(){
 		return (
 			React.createElement("div", {className: "contacts-sort"}, 

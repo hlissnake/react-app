@@ -3,7 +3,7 @@ var React = require('react');
 var BusinessCard = React.createClass({
 
 	shouldComponentUpdate : function(nextProps, nextState){
-		return this.props.contact.username != nextProps.contact.username;
+		return this.props.contact != nextProps.contact;
 	},
 
 	render : function(){
@@ -12,14 +12,14 @@ var BusinessCard = React.createClass({
 			return (
 				<div className="business-card">
 					<div className="business-left">
-						<div className="name">{contact.name}</div>
+						<div className="name">{contact.get('name')}</div>
 					</div>
 					<div className="business-right">
-						<div className="company">{contact.company.name}</div>
-						<div className="phrase">{contact.company.catchPhrase}</div>
-						<div className="phone">{contact.phone}</div>
-						<div className="email">{contact.email}</div>
-						<div className="website">{contact.website}</div>
+						<div className="company">{contact.get('company').name}</div>
+						<div className="phrase">{contact.get('company').catchPhrase}</div>
+						<div className="phone">{contact.get('phone')}</div>
+						<div className="email">{contact.get('email')}</div>
+						<div className="website">{contact.get('website')}</div>
 					</div>
 				</div>
 			)

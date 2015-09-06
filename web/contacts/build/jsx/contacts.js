@@ -1,4 +1,5 @@
 var React = require('react');
+var Immutable = require('immutable');
 var ContactItem = require('./contactItem');
 
 var Contacts = React.createClass({displayName: "Contacts",
@@ -10,12 +11,13 @@ var Contacts = React.createClass({displayName: "Contacts",
 	},
 
 	shouldComponentUpdate : function(nextProps, nextState){
+		// return this.props.contacts == nextProps.contacts;
 		return !nextProps.loading;
 	},
 
 	render : function(){
 		return (
-			React.createElement("div", {className: "contact-list"}, 
+			React.createElement("ul", {className: "contact-list"}, 
 				 this._getContactList() 
 			)
 		)
@@ -24,7 +26,7 @@ var Contacts = React.createClass({displayName: "Contacts",
 	_getContactList : function(){
 		return this.props.contacts.map(function(item, i){
 			return (
-				React.createElement(ContactItem, {data: item, onSelect: this.props.onSelect, key: i})
+				React.createElement(ContactItem, {data:  Immutable.Map(item), onSelect: this.props.onSelect, key: item.id})
 			)
 		}.bind(this));
 	}

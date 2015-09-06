@@ -3,12 +3,31 @@ var Dispatcher = require('../dispatcher/contactsDispatcher');
 var ContactsAction = {
 
 	load : function(){
-		Dispatcher.dispatch({
-	    	source: 'VIEW_ACTION',
-	    	action: {
-		    	type : 'load'
-	    	}
-	    });
+
+		if(window == undefined) {
+			// Node.js load url resource
+		} else {
+			$.ajax({
+				url: "http://jsonplaceholder.typicode.com/users",
+				dataType: 'json',
+				success: function(data) {
+				  	
+					Dispatcher.dispatch({
+				    	source: 'VIEW_ACTION',
+				    	action: {
+					    	type : 'load',
+					    	data : data
+				    	}
+				    });
+				    
+				},
+				error: function(){
+					// ContactsData = OriginalData = MOCK_DATA;
+				 //  	ContactsStore.emitChange();
+					alert('server error');
+				}
+			});
+		}
 	},
 
 	sort : function(option){
@@ -17,6 +36,16 @@ var ContactsAction = {
 	    	action: {
 		    	type : 'sort',
 		    	option : option
+	    	}
+	    });
+	},
+
+	select : function(itemId){
+		Dispatcher.dispatch({
+	    	source: 'VIEW_ACTION',
+	    	action: {
+		    	type : 'select',
+		    	id : itemId
 	    	}
 	    });
 	},

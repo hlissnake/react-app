@@ -44,7 +44,7 @@ gulp.task('pack', ['build', 'css'], function(){
         libraryTarget: 'umd'
       }
     }))
-    .pipe(uglify())
+    // .pipe(uglify())
     .on('error', onError)
     .pipe(gulp.dest('build/'));
   // exec('webpack ./build/index.js ./build/main.js;', function(err) {

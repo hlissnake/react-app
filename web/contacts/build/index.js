@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react/dist/react-with-addons');
+
 var Contacts = require('./jsx/contacts');
 var Sort = require('./jsx/sortSelect');
 var Loading = require('./jsx/loading');
@@ -20,6 +21,7 @@ var ContactList = React.createClass({displayName: "ContactList",
 	componentDidMount : function(){
 		ContactsStore.onChange(this._onChange);
 		ContactsAction.load();
+		React.addons.Perf.start();
 
 		this.setState({
 			loading : true
@@ -33,7 +35,7 @@ var ContactList = React.createClass({displayName: "ContactList",
 	render : function(){
 		return (
 			React.createElement("div", {className: "contacts"}, 
-				React.createElement("div", {className: "left"}, 
+				React.createElement("div", {className: "left span3 bs-docs-sidebar"}, 
 
 					React.createElement("input", {type: "text", placeholder: "search", className: "contact-search", onChange: this._searchContactName}), 
 
@@ -41,7 +43,7 @@ var ContactList = React.createClass({displayName: "ContactList",
 
 					React.createElement("div", {className: "contacts-container"}, 
 
-						React.createElement(Contacts, {contacts: this.state.contacts, loading: this.state.loading, onSelect: this._onSelectContact}), 
+						React.createElement(Contacts, {contacts: this.state.contacts, onSelect: this._onSelectContact}), 
 
 						React.createElement(Loading, {load: this.state.loading})
 
@@ -58,19 +60,37 @@ var ContactList = React.createClass({displayName: "ContactList",
 
 	_selectSortOption : function(e){
 		ContactsAction.sort(e.target.value);
+		React.addons.Perf.printInclusive();
+		
+		React.addons.Perf.stop();
+		React.addons.Perf.start();
 	},
 
 	_searchContactName : function(e){
 		ContactsAction.search(e.target.value);
+		React.addons.Perf.printInclusive();
+		
+		React.addons.Perf.stop();
+		React.addons.Perf.start();
 	},
 
 	_onSelectContact : function(contact){
+
 		this.setState({
 			selectContact : contact
-		})
+		});
+		ContactsAction.select(contact.get('id'));
+
+		React.addons.Perf.printInclusive();
+		React.addons.Perf.printWasted();
+		React.addons.Perf.printDOM();
+
+		React.addons.Perf.stop();
+		React.addons.Perf.start();
 	},
 
 	_onChange : function(){
+		
 		this.setState({
 			loading : false,
 			contacts : ContactsStore.get()
@@ -82,8 +102,11 @@ var ContactList = React.createClass({displayName: "ContactList",
 
 React.render(React.createElement(ContactList, null), document.getElementById('container'));
 
-
-// calculate for each letter of the contact list
+/**
+ * calculate for each letter of the contact list
+ * @param  {[type]} contactsData [description]
+ * @return {[type]}              [description]
+ */
 function calcualteAlphabet(contactsData){
 
 	var result = [],

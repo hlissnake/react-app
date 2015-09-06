@@ -4,7 +4,7 @@ var Loading = React.createClass({
 
 	render : function(){
 		return (
-			<div className={"loading-icon " + (this.props.load ? 'show' : 'hide')}></div>
+			<div className={(this.props.load ? 'loading-icon show' : 'hide')}></div>
 		)
 	}
 });

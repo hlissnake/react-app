@@ -2,7 +2,6 @@ var Dispatcher = require('../dispatcher/contactsDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
-
 var CHANGE_EVENT = 'change';
 
 var ContactsData = [];
@@ -38,23 +37,8 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 
 			case 'load':
 
-				if(window == undefined) {
-					// Node.js load url resource
-				} else {
-					$.ajax({
-						url: "http://jsonplaceholder.typicode.com/users",
-						dataType: 'json',
-						success: function(data) {
-						  	ContactsData = OriginalData = data;
-						  	ContactsStore.emitChange();
-						},
-						error: function(){
-							// ContactsData = OriginalData = MOCK_DATA;
-						 //  	ContactsStore.emitChange();
-							alert('server error');
-						}
-					});
-				}
+				ContactsData = OriginalData = action.data;
+				ContactsStore.emitChange();
 				break;
 
 			case 'search':
@@ -90,6 +74,20 @@ var ContactsStore = assign({}, EventEmitter.prototype, {
 				ContactsStore.emitChange();
 
 				break;
+
+			case 'select':
+
+			    if(action.id) {
+			    	for(var i = 0; i < ContactsData.length; i++) {
+			    		var item = ContactsData[i];
+			    		if(item.id == action.id) {
+			    			item.select = true;
+			    		} else {
+			    			item.select = false;
+			    		}
+			    	}
+					ContactsStore.emitChange();
+			    }
 
 		}
 
