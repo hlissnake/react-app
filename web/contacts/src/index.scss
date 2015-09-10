@@ -1,0 +1,204 @@
+@-webkit-keyframes circle {
+    0% {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(359deg);}
+}
+@keyframes circle {
+    0% {transform: rotate(0deg);}
+    100% { transform: rotate(359deg);}
+}
+
+.contacts {
+	
+	position: relative;
+	left: 0px;
+	top: 0px;
+	width : 640px;
+	height : 100%;
+	margin : 0 auto;
+	padding : 10px;
+    // border: 1px solid #ddd;
+    // -webkit-border-radius: 4px;
+    // border-radius: 4px;
+
+	// opacity: 0;
+	// -webkit-transform: scale(0) translateZ(0);
+	// -webkit-transition: all 0.2s ease;
+
+	&.show {
+		opacity: 1;
+		-webkit-transform: scale(1) translateZ(0);
+	}
+
+	.transform {
+		-webkit-transform: translateZ(0);
+		-webkit-transition: -webkit-transform 0.5s ease;
+	}
+
+	.show {
+		-webkit-transform: scale(1) translateZ(0);
+	}
+
+	.hide {
+		-webkit-transform: scale(0) translateZ(0);
+	}
+
+	.collapse {
+		-webkit-transform: translateY(100%) translateZ(0);
+	}
+
+	.left {
+		position: relative;
+		left: 0;
+		top: 0;
+		width: 30%;
+		float: left;
+		height: auto;
+
+		.contact-search {
+			width: 97%;
+			padding: 0;
+			margin: 0 0 10px;
+			background-color: #ffffff;
+		    border: 1px solid #cccccc;
+		    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+		    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+		    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+		    transition: border linear 0.2s, box-shadow linear 0.2s;
+			display: inline-block;
+			height: 20px;
+			padding: 4px 6px;
+			margin-bottom: 10px;
+			font-size: 14px;
+			line-height: 20px;
+			color: #555555;
+			vertical-align: middle;
+			-webkit-border-radius: 4px;
+			border-radius: 4px;
+		}
+
+	    .contacts-container {
+
+	    	position: relative;
+			width: 100%;
+			height: auto;
+			min-height: 60px;
+			margin-top: 10px;
+			// overflow-x: hidden;
+			// overflow-y: auto;
+			// -webkit-overflow-scrolling: touch;
+    		-webkit-border-radius: 8px;
+		    -moz-border-radius: 8px;
+		    border-radius: 8px;
+
+	    	.contact-list {
+
+			    width: 182px;
+			    height: auto;
+				margin: 0;
+				padding: 0;
+
+			    .contact-item {
+
+			    	width: 100%;
+			    	height: 40px;
+			    	padding: 0 1px;
+			    	margin: 0 0 -1px;
+    				border: 1px solid #e5e5e5;
+					text-align: center;
+					line-height: 40px;
+					font-size: 16px;
+					overflow: hidden;
+					font-weight: 800;
+					color: #0088cc;
+
+					&:first-child {
+					    -webkit-border-radius: 6px 6px 0 0;
+					    border-radius: 6px 6px 0 0;
+					}
+
+					&:last-child {
+					    -webkit-border-radius: 0 0 6px 6px;
+					    border-radius: 0 0 6px 6px;
+					}
+
+					&.selected {
+						border: 0;
+			    		padding: 0 2px;
+						background-color: #0088cc;
+						color: #FFF;
+					}
+			    }
+	    	}
+
+	    	.loading-icon {
+    			position: absolute;
+    			left: 50%;
+    			top: 50%;
+    			width: 30px;
+    			height: 30px;
+    			margin: -15px 0 0 -15px;
+    			border:5px solid #ccc;
+			    border-radius:50%;
+			    -webkit-border-radius:50%;
+			    border-left-color:#ffe326;
+			    -moz-animation: circle 1s infinite linear;
+			    -o-animation: circle 1s infinite linear;
+			    -webkit-animation: circle 1s infinite linear;
+			    animation: circle 1s infinite linear;
+
+			    &.show {
+			    	display: block;
+			    }
+
+			    &.hide {
+			    	display: none;
+			    }
+    		}
+	    }
+	
+	}
+
+    @media only screen and (-webkit-min-device-width: 400px), 
+    	   only screen and (min-device-width: 400px) {
+
+    	// .left {
+    	// 	width: 100%;
+    	// }
+
+    }
+
+    .card-container {
+    	position: relative;
+    	width: 68%;
+	    height: 350px;
+	    float: right;
+	    text-align: center;
+	    line-height: 350px;
+	    border: 1px solid #ddd;
+	    -webkit-border-radius: 4px;
+	    border-radius: 4px;
+
+	    .business-card {
+	    	position: relative;
+	    	width: 100%;
+	    	height: 100%;
+
+	    	.business-left {
+	    		position: relative;
+			    width: 50%;
+			    height: 100%;
+	    	}
+
+	    	.business-right {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 50%;
+				margin-left: 50%;
+				overflow: hidden;
+	    		line-height: 40px;
+	    	}
+	    }
+    }
+
+}

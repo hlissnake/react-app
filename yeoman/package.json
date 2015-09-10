@@ -1,0 +1,15 @@
+{
+  "name": "react-web",
+  "version": "1.0.0",
+  "description": "The yeoman generator for react project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/hlissnake/react-app/yeoman"
+  },
+  "author": "hlissnake",
+  "license": "MIT"
+}

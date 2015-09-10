@@ -1,0 +1,549 @@
+// @-webkit-keyframes wave {
+//     0% {
+//         -webkit-transform: scale(1) translateZ(0);
+//         opacity: 1;
+//     }
+//     100% {
+//         -webkit-transform: scale(1.1) translateZ(0);
+//         opacity: 1;
+//     }
+// }
+// @keyframes wave {
+//     0% {
+//         transform: scale(1) translateZ(0);
+//         opacity: 1;
+//     }
+//     100% {
+//         transform: scale(1.1) translateZ(0);
+//         opacity: 1;
+//     }
+// }
+
+.mui-taoorder-gift {
+	
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width : 100%;
+	height : 100%;
+	// display: none;
+	overflow: hidden;
+	background-color: rgba(0,0,0,0.5);
+
+	opacity: 0;
+	-webkit-transform: scale(0) translateZ(0);
+	-webkit-transition: all 0.2s ease;
+
+	&.show {
+		opacity: 1;
+		-webkit-transform: scale(1) translateZ(0);
+	}
+
+	.transform {
+		-webkit-transform: translateZ(0);
+		-webkit-transition: -webkit-transform 0.5s ease;
+	}
+
+	.show {
+		-webkit-transform: scale(1) translateZ(0);
+	}
+
+	.hide {
+		-webkit-transform: scale(0) translateZ(0);
+	}
+
+	.collapse {
+		-webkit-transform: translateY(100%) translateZ(0);
+	}
+
+	.mui-taoorder-gift-draw {
+
+		position: absolute;
+		left: 50%;
+		top: 20px;
+		margin-left: -150px;
+		width: 300px;
+		height: 420px;
+		background-image: url(//img.alicdn.com/tps/i4/TB1zX8rIVXXXXaNXFXXoAZmIVXX-600-840.png);
+		background-position: center;
+		background-size: 100%;
+		z-index: 1;
+
+		.draw-panel {
+
+			position: absolute;
+			width: 300px;
+			height: 340px;
+			left: 0;
+			top: 0;	
+
+			.award {
+
+				background-image: url(//img.alicdn.com/tps/i2/TB1rrOoIVXXXXaRXFXX9xSM4VXX-224-284.png);
+				background-size: 100%;
+				position: absolute;
+				left: 50%;
+    			top: 50%;
+				width: 112px;
+				height: 142px;
+				margin-top: 8px;
+				margin-left: 8px;
+
+				img {
+					position: absolute;
+    				left: 16px;
+					width: 80px;
+				}
+
+				.amount {
+					position: absolute;
+					left: 35px;
+					top: 38px;
+					color: #fff;
+					font-size: 28px;
+					font-weight: 500;
+				}
+
+				.info {
+					position: absolute;
+    				width: 100%;
+
+    				.name, .expiry {
+						font-size: 12px;
+						padding: 8px 9px 0;
+    				}
+
+    				.name, .type {
+						width: 100px;
+						height: 14px;
+						overflow: hidden;
+						text-overflow: clip;
+    				}
+
+    				.price, .type {
+    					font-size: 14px;
+    					padding-left: 7px;
+    				}
+
+    				.original {
+    					font-size: 12px;
+					    color: #999999;
+					    padding-left: 4px;
+					    text-decoration: line-through;
+    				}
+				}
+
+				&.award-lu {
+					margin-top: -150px;
+    				margin-left: -120px;
+
+    				img {
+						bottom: 16px;
+						height: 80px;
+    				}
+				}
+
+				&.award-ru {
+					margin-top: -150px;
+    				margin-left: 8px;
+
+    				img {
+						bottom: 30px;
+    				}
+
+					.amount {
+						top: 70px;
+					}
+				}
+
+				&.award-ld {
+					margin-top: 8px;
+    				margin-left: -120px;
+
+    				img {
+						top: 26px;
+    				}
+
+					.info {
+						bottom: 10px;
+					}
+				}
+				&.award-rd {
+
+    				img {
+						top: 26px;
+    				}
+
+					.info {
+						bottom: 10px;
+					}
+				}
+			}		
+
+			.draw {
+				position: absolute;
+				width: 145px;
+				height: 145px;
+				left: 50%;
+				top: 50%;
+				margin: -73px 0 0 -73px;
+				background-image: url(http://gtms02.alicdn.com/tps/i2/TB17DXXIVXXXXXgXVXX9DGJUXXX-306-306.png);
+				background-size: 100% 100%;
+				// -webkit-animation: wave 1s infinite linear;
+				// animation: wave 1s infinite linear;
+				
+				&.nologin {
+					background-image: url(//img.alicdn.com/tps/i1/TB1VwnvIVXXXXc7XXXX9DGJUXXX-306-306.png);
+				}
+
+				span.count {
+					position: absolute;
+				    left: 58px;
+				    bottom: 37px;
+				    background-color: #7951D6;
+				    color: #fff;
+				    padding: 3px;
+				    border-radius: 4px;
+				    text-align: center;
+				    line-height: 9px;
+				    width: 15px;
+				    height: 10px;
+				    font-size: 14px;
+				}
+			}
+
+		}
+
+		.result-entry {
+			position: absolute;
+			left: 20px;
+			bottom: 10px;
+			width: 70px;
+			height: 60px;
+			background-image: url(//img.alicdn.com/tps/i1/TB1PTBJIVXXXXblXXXXvEg4JVXX-96-78.png);
+			background-size: 48px 39px;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+	}
+
+	.mui-taoorder-gift-animation {
+		position: absolute;
+		left: 50%;
+		top: 20px;
+		width: 320px;
+		height: 320px;
+		margin-left: -160px;
+		background-image: url(//img.alicdn.com/tps/i2/TB1FGzvIVXXXXa9XFXXh7Qm2pXX-750-750.png);
+		background-size: 100%;
+		z-index: 2;
+
+		img.open-gif {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.mui-taoorder-gift-result {
+
+		position: absolute;
+		width: 300px;
+		height: 360px;
+		left: 50%;
+		top: 20px;
+		margin-left: -150px;
+		background-color: #F2F2F2;
+		z-index: 3;
+
+		.head {
+			position: relative;
+			width: 100%;
+		    height: 96px;
+		    padding-top: 50px;
+		    background-image: url(http://gtms01.alicdn.com/tps/i1/TB1T7pvIVXXXXbQXFXXNwMJQpXX-300-146.png);
+
+		    .mui-taoorder-gift-head-message {
+		    	color: #fff;
+			    text-align: left;
+			    margin: 0 auto;
+			    width: 240px;
+
+			    p {
+			    	&:first-child {
+			    		font-size: 24px;
+    					font-weight: 900;
+			    	}
+			    	&:last-child {
+			    		font-size: 16px;
+			    	}
+			    }
+		    }
+		}
+
+		.content {
+			position: relative;
+			height: 144px;
+			padding-top: 20px;
+
+    		&.win {
+    			height: 134px;
+    			padding-top: 30px;
+
+    			.coupon {
+    				display: block;
+    			}
+
+	    		.mui-taoorder-gift-failure {
+	    			display: none;
+	    		}
+    		}
+
+    		.coupon {
+    			position: relative;
+    			display: none;
+    			margin: 0px auto;
+    			width: 230px;
+    			height: 84px;
+
+    			.mui-taoorder-gift-coupon {
+    				width: 100%;
+    			}
+
+    			.amount {
+					position: absolute;
+					color: #fff;
+					font-size: 50px;
+					font-weight: 900;
+					left: 38px;
+					bottom: 12px;
+
+					&.overflow {
+						font-size: 30px;
+						bottom: 14px;
+					}
+    			}
+
+    			.right {
+					position: absolute;
+					right: 30px;
+					top: 24px;
+					font-size: 12px;
+					color: #fff;
+    			}
+
+    			&.flow {
+    				.amount {
+    					display: none;
+    				}
+    				.right {
+    					display: none;
+    				}
+    			}
+    		}
+
+    		.final-price {
+    			position: relative;
+			    margin: 0px auto;
+			    width: 260px;
+			    height: 88px;
+			    background-color: #FFEED3;
+
+			    img {
+			    	width: 70px;
+    				margin: 10px;
+			    }
+
+			    .center {
+			    	position: absolute;
+				    width: 95px;
+				    top: 20px;
+				    left: 90px;
+				    font-size: 12px;
+
+				    .expiry {
+				    	color: #F5A623;
+    					margin-top: 10px;
+				    }
+			    }
+
+			    .right {
+			    	position: absolute;
+				    right: 10px;
+				    top: 30px;
+				    color: #F5A623;
+				    font-size: 24px;
+			    }
+    		}
+
+    		.mui-taoorder-gift-failure {
+				width: 153px;
+				margin-left: 65px;
+    		}
+
+    		#mui-taoorder-gift-value {
+    			color: #767676;
+    			font-size: 13px;
+    			margin: 10px auto 0;
+    			text-align: center;
+    		}
+		}
+
+		.footer {
+			position: relative;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 50px;
+
+			.btn {
+				width: 149px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				background-color: #fff;
+				color: #333333;
+    			font-size: 14px;
+			}
+			.left {
+				position: relative;
+				float: left;
+				&:after {
+					content: '';
+					position: absolute;
+					width: 12px;
+					height: 15px;
+					left: 28px;
+					top: 17px;
+					background-image: url(//img.alicdn.com/tps/i2/TB1F_J6IVXXXXbjaXXXzN1OFFXX-24-30.png);
+					background-size: 100%;
+				}
+			}
+			.right {
+				position: relative;
+				float: right;
+				&:after {
+					content: '';
+					position: absolute;
+					width: 15px;
+					height: 15px;
+					left: 23px;
+					top: 17px;
+					background-image: url(//img.alicdn.com/tps/i3/TB1GRxZIVXXXXbYapXXQweWFVXX-30-30.png);
+					background-size: 100%;
+				}
+			}
+		}
+	}
+
+	.mui-taoorder-gift-close {
+		position: absolute;
+		left: 50%;
+		top: 21px;
+		width: 32px;
+		height: 32px;
+		margin: -12px 0 0 130px;
+		background-image: url(//img.alicdn.com/tps/i3/TB1yQZ6IFXXXXb9aXXX1ElnIXXX-64-64.png);
+		background-size: 100%;
+		z-index: 4;
+	}
+
+	.mui-taoorder-gift-list {
+
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		overflow: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        z-index: 5;
+
+		.head {
+			width: 100%;
+			height: auto;
+
+			img {
+				width: 100%;
+			}
+		}
+
+		.coupons {
+			width: 100%;
+    		height: auto;
+
+    		.item {
+    			width: 100%;
+			    height: 100px;
+			    position: relative;
+			    float: left;
+			    border-top: 1px solid #5D5E5E;
+
+			    img {
+					position: absolute;
+					width: 80px;
+					height: 40px;
+					left: 20px;
+					top: 30px;
+			    }
+
+			    .center {
+			    	position: absolute;
+				    width: 200px;
+				    height: auto;
+				    left: 50%;
+				    top: 30px;
+				    margin-left: -60px;
+
+				    .shop-name {
+				    	color: #999999;
+    					font-size: 14px;
+				    }
+
+				    p {
+				    	color: #4A4A4A;
+					    font-size: 16px;
+					    margin-top: 5px;
+					    font-weight: 800;
+				    }
+			    }
+
+			    .remind {
+			    	position: absolute;
+				    right: 20px;
+				    top: 38px;
+				    width: 24px;
+				    height: 24px;
+				    background-image: url(//img.alicdn.com/tps/i4/TB1925NIVXXXXbZapXXiC47GVXX-44-44.png);
+				    background-size: 100%;
+			    }
+    		}
+
+		    @media only screen and (-webkit-min-device-pixel-ratio: 1.3), 
+		    	   only screen and (min-device-pixel-ratio: 1.3) {
+
+		    	.item {
+
+		    		border-top: none;
+
+				    &:after {
+				    	content: '';
+				    	position: absolute;
+				    	left: 0px;
+				    	top: 0px;
+				    	width: 100%;
+				    	height: 1px;    
+				    	background-color: #5D5E5E;
+						opacity: 0.5;
+	    				-webkit-transform: scale(1, 0.5);
+				    }
+				}
+		   	}
+		}
+	}
+
+	.font-red {
+		color: red;
+	}
+}
