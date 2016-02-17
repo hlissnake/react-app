@@ -1,9 +1,9 @@
 var path = require('path');
 var gulp = require('gulp');
-var code = require('gulp-code');
 var webpack = require('gulp-webpack');
 var uglify = require('gulp-uglify');
 var react = require('gulp-react');
+var babel = require('gulp-babel');
 var exec = require('child_process').exec;
 
 //引入包配置
@@ -14,19 +14,13 @@ function onError(err){
   this.emit('end');
 }
 
-//注册css构建任务
-gulp.task('css', function () {
-  return gulp.src('src/**/*.css')
-    .pipe(code.lint())       //css代码检查
-    .pipe(code.minify())     //css代码压缩
-    .pipe(gulp.dest('build/'))
-});
-
 //注册js构建任务
 gulp.task('js', function () {
   return gulp.src('src/**/*.js')
-    .pipe(code.lint())  //js代码检查
-    .pipe(react())      // complie React JSX template
+    .pipe(babel({
+      presets: ['es2015', 'react']
+    }))
+    // .pipe(react())      // complie React JSX template
     .on('error', onError)
     .pipe(gulp.dest('build/'));
 });
@@ -37,7 +31,7 @@ gulp.task('build', ['js'], function(){
     .pipe(gulp.dest('build/'));
 });
 
-gulp.task('pack', ['build', 'css'], function(){
+gulp.task('pack', ['build'], function(){
   return gulp.src('build/index.js')
     .pipe(webpack({
       output: {
